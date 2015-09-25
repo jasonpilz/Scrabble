@@ -1,5 +1,5 @@
 gem 'minitest'
-require './lib/scrabble'
+require File.expand_path('../lib/scrabble', __dir__)
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
