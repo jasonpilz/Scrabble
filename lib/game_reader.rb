@@ -1,5 +1,6 @@
 require 'csv'
 require 'pry'
+require_relative 'scrabble'
 
 class GameReader
 attr_reader :players
@@ -14,13 +15,22 @@ attr_reader :players
       @players << row[:player_id] unless @players.include?(row[:player_id])
       validated << row.to_h
     end
-
-    results = {}
-    validated.each do |word_score|
-      
+    scores = validated.map.group_by { |row| row[:player_id].to_i }
+    scores.each_pair do |k,ary|
+      words = []
+      ary.each do |hsh|
+        words << hsh[:word].strip
+      end
+      scores[k] = words
     end
 
-    binding.pry
+    scores.each_pair do |player, words|
+      total = 0
+      words.each do |word|
+        total += Scrabble.new.score(word)
+      end
+      puts "Player #{player} scored #{total}"
+    end
   end
 
 end
