@@ -5,8 +5,4 @@ class Wordfinder
     @words = File.read('/usr/share/dict/words').split("\n")
   end
 
-  def find_word_for_score(score)
-    # TODO
-  end
-
 end

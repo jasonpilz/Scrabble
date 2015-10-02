@@ -31,5 +31,4 @@ class ScrabbleTest < Minitest::Test
   def test_score_for_nil_returns_0
     assert_equal 0, Scrabble.new.score(nil)
   end
-
 end
